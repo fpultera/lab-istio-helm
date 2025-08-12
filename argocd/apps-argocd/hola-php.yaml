@@ -11,12 +11,9 @@ spec:
     path: hola-mundo-helm
     helm:
       releaseName: hola-php
-      parameters:
-        - name: phpMessage
-          value: "Hola desde ArgoCD y PHP!"
   destination:
     server: https://kubernetes.default.svc
-    namespace: php-apps
+    namespace: hola-php-apps
   syncPolicy:
     automated:
       prune: true
