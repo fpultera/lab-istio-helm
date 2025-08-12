@@ -9,6 +9,10 @@ service:
   type: ClusterIP
   port: 80
 
+serviceAccount:
+  create: false
+  name: ""
+
 ingress:
   enabled: true
   className: "nginx"
