@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "hola-apps-v2.fullname" . }}-php-content
+data:
+  index.php: |
+    <?php
+    $checkDomain = "hola-externo.local";
+    if (gethostbyname($checkDomain) !== $checkDomain) {
+        echo "OK: Dominio $checkDomain está vivo\n";
+    } else {
+        echo "ERROR: No se pudo resolver $checkDomain\n";
+    }
+    echo "{{ .Values.phpMessage }}";

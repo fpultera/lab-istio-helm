@@ -23,7 +23,11 @@ spec:
           volumeMounts:
             - name: php-content
               mountPath: /var/www/html
+      volumeMounts:
+        - name: php-content
+          mountPath: /var/www/html
       volumes:
         - name: php-content
           configMap:
-            name: {{ include "hola-mundo-helm.fullname" . }}-php-content
+            name: {{ include "hola-apps-v2.fullname" . }}-php-content
+

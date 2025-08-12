@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hola-php-v2
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/fpultera/lab-istio-helm.git'
+    targetRevision: HEAD
+    path: hola-apps-v2
+    helm:
+      releaseName: hola-php-v2
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hola-php-v2-apps
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
