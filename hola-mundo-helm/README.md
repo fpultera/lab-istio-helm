@@ -1,0 +1,1 @@
+helm install hola-php ./hola-mundo-helm --namespace hola-php-apps --create-namespace

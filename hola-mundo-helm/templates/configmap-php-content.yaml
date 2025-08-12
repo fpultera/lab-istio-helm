@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "hola-mundo-helm.fullname" . }}-php-content
+data:
+  index.php: |
+    <?php
+    $domain = "http://hola-externo.local";
+    $headers = @get_headers($domain);
+
+    if ($headers && strpos($headers[0], "200") !== false) {
+        echo "OK - Dominio $domain está vivo\n";
+        echo "{{ .Values.phpMessage }}";
+    } else {
+        echo "ERROR - No se pudo acceder a $domain\n";
+    }
+    ?>

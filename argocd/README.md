@@ -1,0 +1,1 @@
+sh argocd/argocd-install.sh

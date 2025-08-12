@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hola-mundo-helm.fullname" . }}
+  labels:
+    app: {{ include "hola-mundo-helm.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "hola-mundo-helm.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "hola-mundo-helm.name" . }}
+    spec:
+      containers:
+        - name: php
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: php-content
+              mountPath: /var/www/html
+      volumes:
+        - name: php-content
+          configMap:
+            name: {{ include "hola-mundo-helm.fullname" . }}-php-content

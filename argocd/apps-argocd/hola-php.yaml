@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hola-php
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/tu-org/tu-repo.git'
+    targetRevision: HEAD
+    path: hola-mundo-helm
+    helm:
+      releaseName: hola-php
+      parameters:
+        - name: phpMessage
+          value: "Hola desde ArgoCD y PHP!"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: php-apps
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
