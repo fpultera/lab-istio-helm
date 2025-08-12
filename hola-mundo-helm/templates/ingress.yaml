@@ -2,9 +2,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "hola-apps-v2.fullname" . }}
+  name: {{ include "hola-mundo-helm.fullname" . }}
   labels:
-    {{- include "hola-apps-v2.labels" . | nindent 4 }}
+    {{- include "hola-mundo-helm.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -23,7 +23,7 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ include "hola-apps-v2.fullname" $ }}
+                name: {{ include "hola-mundo-helm.fullname" $ }}
                 port:
                   number: {{ $.Values.service.port }}
           {{- end }}
