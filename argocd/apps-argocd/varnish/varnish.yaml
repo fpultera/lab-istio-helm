@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: varnish-proxy
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/fpultera/lab-istio.git # Cambiá si vas a ponerlo en otro repo
+    targetRevision: main
+    path: varnish
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hola-varnish
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
