@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/fpultera/lab-istio.git # Cambiá si vas a ponerlo en otro repo
+    repoURL: https://github.com/fpultera/lab-istio-helm.git # Cambiá si vas a ponerlo en otro repo
     targetRevision: main
     path: varnish
   destination:
